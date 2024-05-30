@@ -1,25 +1,21 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-}
-
-kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-    }
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    )
+    alias(libs.plugins.caloreeMultiplaform)
 }
 
 android {
     namespace = "com.theophiluskibet.caloree.data"
+
+    ktlint {
+        reporters {
+            reporter(ReporterType.JSON)
+        }
+        filter {
+            exclude("**/generated/**")
+//            include("**/kotlin/**")
+        }
+    }
 }
