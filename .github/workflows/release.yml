@@ -1,0 +1,68 @@
+name: Release Caloree
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_to_run:
+        type: choice
+        description: Which job do you want to run
+        required: true
+        options:
+          - firebase-release
+          - playstore-release
+          - app-store-release
+
+jobs:
+  firebase-release:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_to_run == 'firebase-release'
+    name: Release app to firebase
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Assemble Release Bundle
+        run: |
+          ./gradlew assembleRelease
+
+  #TODO -> add implementation for signing and uploding to firebase
+
+  playstore-release:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_to_run == 'playstore-release'
+    name: Release app to playstore
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Assemble Release Bundle
+        run: |
+          ./gradlew assembleRelease
+
+  #TODO -> add implementation for signing and uploding to playstore
+
+  app-store-release:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_to_run == 'app-store-release'
+    name: Release app to app store
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      #TODO -> add implementation for preparing and uploding to app store
+

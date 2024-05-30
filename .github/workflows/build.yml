@@ -1,0 +1,29 @@
+name: Build Caloree
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "corretto"
+          java-version: "17"
+
+      - name: Run Lint Checks
+        run: |
+          ./gradlew ktlintCheck
+
+#TODO -> figure out why build fails
+#      - name: Build Android App
+#        run: |
+#          ./gradlew build
