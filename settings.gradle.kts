@@ -29,3 +29,10 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":core:data")
+include(":core:designsystem")
+include(":core:local")
+include(":core:network")
+include(":feature:onboarding")
+include(":feature:home")
+include(":feature:settings")
