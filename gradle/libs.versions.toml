@@ -9,6 +9,7 @@ androidx-constraintlayout = "2.1.4"
 androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.5.1"
 androidx-material = "1.12.0"
+androidx-room = "2.7.0-alpha01"
 androidx-test-junit = "1.1.5"
 caloree = "0.1.0" # not a real version, just providing since using alias to access plugins requires a version
 compose-plugin = "1.6.10"
@@ -17,6 +18,8 @@ kotlin = "2.0.0"
 ktlint = "12.1.1"
 ktor = "2.3.11"
 koin = "3.5.0"
+ksp = "2.0.0-1.0.21"
+sqlite = "2.5.0-SNAPSHOT"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -29,6 +32,15 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+
+# room
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
+androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+
+# ktor
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
@@ -37,6 +49,8 @@ ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+
+# koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 
@@ -56,3 +70,5 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 caloreeMultiplaform = { id = "caloree.multiplaform", version.ref = "caloree" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "androidx-room" }
