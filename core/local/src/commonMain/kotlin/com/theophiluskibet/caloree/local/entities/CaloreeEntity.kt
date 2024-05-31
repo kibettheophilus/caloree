@@ -3,7 +3,7 @@ package com.theophiluskibet.caloree.local.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "caloree_entity")
+@Entity(tableName = "caloree_table")
 data class CaloreeEntity(
     @PrimaryKey(autoGenerate = false)
     val name: String,
