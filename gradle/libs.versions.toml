@@ -13,6 +13,7 @@ androidx-room = "2.7.0-alpha01"
 androidx-test-junit = "1.1.5"
 caloree = "0.1.0" # not a real version, just providing since using alias to access plugins requires a version
 compose-plugin = "1.6.10"
+coroutines = "1.9.0-RC"
 junit = "4.13.2"
 kotlin = "2.0.0"
 ktlint = "12.1.1"
@@ -53,6 +54,9 @@ ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 # koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+
+# coroutines
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
