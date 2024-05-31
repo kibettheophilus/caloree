@@ -10,8 +10,9 @@ import org.koin.dsl.module
  * [dataModule] provide instances of dependencies needed by classes
  * loads local and network module using [localModule] and [networkModule] respectively
  */
-val dataModule = module {
-    includes(listOf(localModule(), networkModule))
+val dataModule =
+    module {
+        includes(listOf(localModule(), networkModule))
 
-    singleOf(::CaloreeRepositoryImpl) { bind<CaloreeRepository> }
-}
+        singleOf(::CaloreeRepositoryImpl) { bind<CaloreeRepository>}
+    }

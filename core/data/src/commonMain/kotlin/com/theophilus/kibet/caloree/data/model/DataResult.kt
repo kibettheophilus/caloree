@@ -5,5 +5,6 @@ package com.theophilus.kibet.caloree.data.model
  */
 sealed class DataResult {
     data class Success(val calories: List<Caloree>) : DataResult()
+
     data class Error(val message: String) : DataResult()
 }

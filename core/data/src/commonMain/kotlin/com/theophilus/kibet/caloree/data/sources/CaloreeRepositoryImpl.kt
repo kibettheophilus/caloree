@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flowOf
 
 class CaloreeRepositoryImpl(
     private val caloreeApi: CaloreeApi,
-    private val caloreeDao: CaloreeDao
+    private val caloreeDao: CaloreeDao,
 ) : CaloreeRepository {
     /**
      * Retreives a list of calories from db if matches the query else fetch from network
@@ -37,9 +37,14 @@ class CaloreeRepositoryImpl(
             val response = caloreeApi.getCalories(query = query)
             response.onSuccess { result ->
                 caloreeDao.saveCalories(result.calorieItemsDto.map { it.toEntity() })
-                flowOf(DataResult.Success(calories = result.calorieItemsDto.map {
-                    it.toEntity().toModel()
-                }))
+                flowOf(
+                    DataResult.Success(
+                        calories =
+                            result.calorieItemsDto.map {
+                                it.toEntity().toModel()
+                            },
+                    ),
+                )
             }
             response.onFailure { error ->
                 flowOf(DataResult.Error(message = error.message))
