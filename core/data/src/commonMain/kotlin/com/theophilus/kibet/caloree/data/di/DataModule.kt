@@ -14,5 +14,5 @@ val dataModule =
     module {
         includes(listOf(localModule(), networkModule))
 
-        singleOf(::CaloreeRepositoryImpl) { bind<CaloreeRepository> }
+        singleOf(::CaloreeRepositoryImpl) { bind<CaloreeRepository>() }
     }
