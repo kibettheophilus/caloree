@@ -36,7 +36,7 @@ interface CaloreeDao {
      * val names = listOf("rice","banana")
      *
      * getCalories(names)
-     * 
+     *
      * ```
      */
     @Query("SELECT * FROM caloree_table WHERE name IN(:names)")
