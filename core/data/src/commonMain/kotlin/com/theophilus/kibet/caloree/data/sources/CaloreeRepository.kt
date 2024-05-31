@@ -5,7 +5,7 @@ import com.theophilus.kibet.caloree.data.model.DataResult
 import kotlinx.coroutines.flow.Flow
 
 interface CaloreeRepository {
-    suspend fun searchCalories(query: String): Flow<DataResult>
+    suspend fun searchCalories(query: String): List<Caloree>
 
     suspend fun getSavedCalories(): Flow<List<Caloree>>
 

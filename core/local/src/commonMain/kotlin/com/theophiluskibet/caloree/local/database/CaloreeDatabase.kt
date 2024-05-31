@@ -13,4 +13,5 @@ import com.theophiluskibet.caloree.local.entities.CaloreeEntity
 @Database(entities = [CaloreeEntity::class], version = 1)
 abstract class CaloreeDatabase : RoomDatabase() {
     abstract fun caloreeDao(): CaloreeDao
+
 }
