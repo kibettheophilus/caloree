@@ -27,7 +27,7 @@ interface CaloreeDao {
      * retreives a single calorie matching provided name from the db
      */
     @Query("SELECT * FROM caloree_table WHERE name=:name")
-    suspend fun getCalory(name: String): CaloreeEntity
+    suspend fun getCaloryDetails(name: String): CaloreeEntity
 
     /**
      * retreives a list of calories matching the provided names from the getCaloriesByNames
