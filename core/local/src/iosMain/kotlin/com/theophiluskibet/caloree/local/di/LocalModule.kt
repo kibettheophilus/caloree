@@ -9,11 +9,17 @@ import kotlinx.coroutines.IO
 import org.koin.dsl.module
 import platform.Foundation.NSHomeDirectory
 
+/**
+ * provides an instance of db implementation in ios
+*/
 actual fun localModule() =
     module {
         single<CaloreeDatabase> { createDatabase() }
     }
 
+/**
+ * creates the db
+ */
 fun createDatabase(): CaloreeDatabase {
     val dbFilePath = NSHomeDirectory() + "/caloree.db"
     return Room.databaseBuilder<CaloreeDatabase>(

@@ -3,6 +3,9 @@ package com.theophiluskibet.caloree.local.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * represents a single calorie in the db
+ */
 @Entity(tableName = "caloree_table")
 data class CaloreeEntity(
     @PrimaryKey(autoGenerate = false)
