@@ -17,26 +17,27 @@ import org.koin.dsl.module
  */
 const val BASE_URL = "https://api.calorieninjas.com/v1/"
 
-val networkModule = module {
-    single {
-        HttpClient {
-            install(ContentNegotiation) {
-                json {
-                    Json {
-                        ignoreUnknownKeys = true
-                        isLenient = true
+val networkModule =
+    module {
+        single {
+            HttpClient {
+                install(ContentNegotiation) {
+                    json {
+                        Json {
+                            ignoreUnknownKeys = true
+                            isLenient = true
+                        }
                     }
                 }
-            }
 
-            install(DefaultRequest) {
-                url {
-                    protocol = URLProtocol.HTTPS
-                    host = BASE_URL
+                install(DefaultRequest) {
+                    url {
+                        protocol = URLProtocol.HTTPS
+                        host = BASE_URL
+                    }
+                    header(HttpHeaders.ContentType, ContentType.Application.Json)
+                    header("X-Api-Key", "8/MqBej61B6ALLuEf7cIWg==tJbmaSTQHGZd6wLJ")
                 }
-                header(HttpHeaders.ContentType, ContentType.Application.Json)
-                header("X-Api-Key", "") // TODO add api key
             }
         }
     }
-}
