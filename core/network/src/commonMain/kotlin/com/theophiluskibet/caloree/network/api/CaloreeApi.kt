@@ -12,9 +12,10 @@ import io.ktor.client.request.parameter
  * @param httpClient provide instance of [HttpClient]
  */
 class CaloreeApi(private val httpClient: HttpClient) {
-    suspend fun getCalories(query: String): Result<CalorieItemsDto> = safeApiCall {
-        httpClient.get("nutrition") {
-            parameter("query", query)
-        }.body()
-    }
+    suspend fun getCalories(query: String): Result<CalorieItemsDto> =
+        safeApiCall {
+            httpClient.get("nutrition") {
+                parameter("query", query)
+            }.body()
+        }
 }

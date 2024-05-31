@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CalorieItemsDto(
     @SerialName("items")
-    val calorieItemsDto: List<CalorieItemDto>
+    val calorieItemsDto: List<CalorieItemDto>,
 )
