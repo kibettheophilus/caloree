@@ -7,14 +7,14 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.androidx.room.runtime)
+            api(libs.androidx.room.runtime)
             implementation(libs.koin.core)
             implementation(libs.sqlite.bundled)
         }
 
-        sourceSets.commonMain {
-            kotlin.srcDir("build/generated/ksp/metadata")
-        }
+//        sourceSets.commonMain {
+//            kotlin.srcDir("build/generated/ksp/metadata")
+//        }
     }
 }
 

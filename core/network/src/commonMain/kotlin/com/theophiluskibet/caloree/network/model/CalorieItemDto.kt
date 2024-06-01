@@ -1,8 +1,11 @@
 package com.theophiluskibet.caloree.network.model
 
+import kotlinx.serialization.Serializable
+
 /**
  * Holds a single food item
  */
+@Serializable
 data class CalorieItemDto(
     val calories: Double,
     val carbohydrates_total_g: Double,

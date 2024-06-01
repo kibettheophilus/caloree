@@ -32,14 +32,22 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
+//            implementation(projects.feature.home)
+            implementation(projects.feature.calorees)
+            implementation(projects.feature.details)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.navigation.compose)
+
+            implementation(libs.koin.core)
         }
     }
 }
