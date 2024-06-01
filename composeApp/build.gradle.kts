@@ -36,7 +36,9 @@ kotlin {
             implementation(libs.koin.android)
         }
         commonMain.dependencies {
-            implementation(projects.feature.home)
+//            implementation(projects.feature.home)
+            implementation(projects.feature.calorees)
+            implementation(projects.feature.details)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)

@@ -41,7 +41,7 @@ val networkModule =
                     logger =
                         object : Logger {
                             override fun log(message: String) {
-                                log(message)
+                                // log(message)
                             }
                         }
                     level = LogLevel.ALL

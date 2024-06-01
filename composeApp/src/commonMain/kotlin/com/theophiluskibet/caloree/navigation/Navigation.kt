@@ -2,20 +2,26 @@ package com.theophiluskibet.caloree.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.theophiluskibet.caloree.home.screens.calorees.HomeScreen
+import com.theophiluskibet.calorees.calorees.screens.CaloreesScreen
+import com.theophiluskibet.calorees.details.screens.DetailScreen
 
 @Composable
 fun Navigation(modifier: Modifier = Modifier) {
+    val navController: NavHostController = rememberNavController()
     NavHost(
         modifier = Modifier,
-        navController = rememberNavController(),
+        navController = navController,
         startDestination = "calorees",
     ) {
         composable("calorees") {
-            HomeScreen()
+            CaloreesScreen(navController = navController)
+        }
+        composable("details/{food}") {
+            DetailScreen(name = it.arguments?.getString("food").toString())
         }
     }
 }

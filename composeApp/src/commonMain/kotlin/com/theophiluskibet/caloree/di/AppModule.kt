@@ -1,9 +1,11 @@
 package com.theophiluskibet.caloree.di
 
-import com.theophiluskibet.caloree.home.di.homeModule
+import com.theophiluskibet.calorees.calorees.di.caloreesModule
+import com.theophiluskibet.calorees.details.di.detailsModule
 import org.koin.dsl.module
 
 val appModule =
     module {
-        includes(homeModule)
+        includes(caloreesModule)
+        includes(detailsModule)
     }
