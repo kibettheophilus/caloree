@@ -13,23 +13,29 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +44,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.theophilus.kibet.caloree.data.model.Caloree
+import com.theophiluskibet.caloree.designsystem.components.EmptyScreenComponent
+import com.theophiluskibet.caloree.designsystem.components.LoadingComponent
 import com.theophiluskibet.calorees.calorees.utils.UiState
+import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
@@ -47,21 +56,18 @@ import org.koin.core.annotation.KoinExperimentalAPI
 fun CaloreesScreen(
     modifier: Modifier = Modifier,
     viewModel: CaloreesViewModel = koinViewModel(),
-    navController: NavController,
+    onNavigateToDetails: (String) -> Unit
 ) {
-//    LaunchedEffect(key1 = true) {
-//        viewModel.getCalories("banana and rice")
-//    }
     var searchString by remember { mutableStateOf("") }
-    val caloryUiState = viewModel.caloriesState.collectAsState().value
+    val caloryUiState by viewModel.caloriesState.collectAsState()
 
     Scaffold(
         topBar = {
             Column(
                 modifier =
-                    Modifier
-                        .background(MaterialTheme.colors.surface)
-                        .padding(vertical = 8.dp, horizontal = 16.dp),
+                Modifier
+                    .background(MaterialTheme.colors.surface)
+                    .padding(vertical = 8.dp, horizontal = 16.dp),
             ) {
                 Text("Calories")
                 OutlinedTextField(
@@ -83,48 +89,56 @@ fun CaloreesScreen(
                     },
                     singleLine = true,
                     colors =
-                        TextFieldDefaults.textFieldColors(
-                            textColor = MaterialTheme.colors.onBackground,
-                            disabledLabelColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent,
-                            disabledIndicatorColor = Color.Transparent,
-                            cursorColor = MaterialTheme.colors.background,
-                        ),
+                    TextFieldDefaults.textFieldColors(
+                        textColor = MaterialTheme.colors.onBackground,
+                        disabledLabelColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        cursorColor = MaterialTheme.colors.background,
+                    ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions =
-                        KeyboardActions(onSearch = {
-                            viewModel.getCalories(searchString)
-                            searchString = ""
-                        }),
+                    KeyboardActions(onSearch = {
+                        viewModel.getCalories(searchString)
+                        searchString = ""
+                    }),
                 )
             }
         },
     ) { innerPadding ->
-        CaloryListSection(uiState = caloryUiState, navController = navController)
+        CaloreeListSection(
+            uiState = caloryUiState,
+            onNavigateToDetails = onNavigateToDetails
+        )
+
     }
+
 }
 
 @Composable
-fun CaloryListSection(
+fun CaloreeListSection(
     uiState: UiState,
-    navController: NavController,
+    onNavigateToDetails: (String) -> Unit
 ) {
     when (uiState) {
         is UiState.Error -> {
-            EmptyScreen(text = uiState.errorMessage)
+            EmptyScreenComponent(text = uiState.errorMessage)
         }
 
-        is UiState.Loading -> LoadingScreen()
-        is UiState.Default -> EmptyScreen(text = "No data, Please search")
+        is UiState.Loading -> LoadingComponent()
+        is UiState.Default -> EmptyScreenComponent(text = "No data, Please search")
         is UiState.Success -> {
             if (uiState.data!!.isEmpty()) {
-                EmptyScreen(text = "No data, Please search")
+                EmptyScreenComponent(text = "No data, Please search")
             } else {
                 Column(modifier = Modifier.fillMaxSize()) {
                     LazyColumn {
                         items(uiState.data) {
-                            CaloryCard(caloryItem = it, navController = navController)
+                            CaloreeCard(
+                                caloryItem = it,
+                                onNavigateToDetails = onNavigateToDetails
+                            )
                         }
                     }
                 }
@@ -132,28 +146,23 @@ fun CaloryListSection(
         }
 
         else -> {
-            EmptyScreen(text = "No data, Please search")
+            EmptyScreenComponent(text = "No data, Please search")
         }
-    }
-}
-
-@Composable
-fun EmptyScreen(text: String) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = text)
     }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CaloryCard(
+fun CaloreeCard(
     caloryItem: Caloree,
-    navController: NavController,
+    onNavigateToDetails: (String) -> Unit
 ) {
     Card(
         elevation = 10.dp,
         modifier = Modifier.padding(10.dp),
-        onClick = { navController.navigate("details/${caloryItem.name}") },
+        onClick = {
+            onNavigateToDetails(caloryItem.name)
+        },
         border = BorderStroke(1.dp, Color.Black),
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
@@ -161,12 +170,5 @@ fun CaloryCard(
             Spacer(modifier = Modifier.height(5.dp))
             Text(text = "Calories: ${caloryItem.calories}")
         }
-    }
-}
-
-@Composable
-fun LoadingScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        CircularProgressIndicator()
     }
 }

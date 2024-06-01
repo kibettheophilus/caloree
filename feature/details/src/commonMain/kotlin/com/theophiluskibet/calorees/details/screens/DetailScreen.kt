@@ -31,7 +31,7 @@ fun DetailScreen(
     modifier: Modifier = Modifier,
     name: String,
     viewModel: DetailsViewModel = koinViewModel(),
-    navController: NavController
+    onNavigateToBack: () -> Unit
 ) {
     LaunchedEffect(key1 = true) {
         viewModel.getCaloreeDetails(food = name)
@@ -41,7 +41,7 @@ fun DetailScreen(
 
     Scaffold(topBar = {
         TopAppBar(navigationIcon = {
-            IconButton(onClick = { navController.popBackStack() }) {
+            IconButton(onClick = onNavigateToBack) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Default.ArrowBack,
                     contentDescription = ""
