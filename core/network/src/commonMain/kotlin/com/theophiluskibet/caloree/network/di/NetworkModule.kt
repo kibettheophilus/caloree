@@ -4,8 +4,6 @@ import coil3.network.CacheStrategy
 import coil3.network.NetworkFetcher
 import coil3.network.ktor.asNetworkClient
 import com.theophiluskibet.caloree.network.api.CaloreeApi
-import io.github.aakira.napier.DebugAntilog
-import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -42,8 +40,7 @@ val networkModule =
                 install(Logging) {
                     logger = object : Logger {
                         override fun log(message: String) {
-                            Napier.v("HTTP client", null, message)
-                            Napier.base(DebugAntilog())
+                            log(message)
                         }
                     }
                     level = LogLevel.ALL
