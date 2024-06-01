@@ -26,9 +26,9 @@ class CaloreesViewModel(
                     UiState.Success(data = result)
                 }
                 // Log.d("CALORIES", "CALORIESVM: $result")
-            } catch (e: Exception) {
+            } catch (exception: Exception) {
                 _caloriesState.update {
-                    UiState.Error(errorMessage = e.localizedMessage)
+                    UiState.Error(errorMessage = exception.message.toString())
                 }
                 // Log.d("CALORIES", "CALORIESVMErr: ${e.localizedMessage}")
             }
