@@ -54,9 +54,9 @@ fun CaloreesScreen(
         topBar = {
             Column(
                 modifier =
-                    Modifier
-                        .background(MaterialTheme.colors.surface)
-                        .padding(vertical = 8.dp, horizontal = 16.dp),
+                Modifier
+                    .background(MaterialTheme.colors.surface)
+                    .padding(vertical = 8.dp, horizontal = 16.dp),
             ) {
                 Text("Calories")
                 OutlinedTextField(
@@ -78,20 +78,20 @@ fun CaloreesScreen(
                     },
                     singleLine = true,
                     colors =
-                        TextFieldDefaults.textFieldColors(
-                            textColor = MaterialTheme.colors.onBackground,
-                            disabledLabelColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent,
-                            disabledIndicatorColor = Color.Transparent,
-                            cursorColor = MaterialTheme.colors.background,
-                        ),
+                    TextFieldDefaults.textFieldColors(
+                        textColor = MaterialTheme.colors.onBackground,
+                        disabledLabelColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        cursorColor = MaterialTheme.colors.background,
+                    ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions =
-                        KeyboardActions(onSearch = {
-                            viewModel.getCalories(searchString)
-                            searchString = ""
-                        }),
+                    KeyboardActions(onSearch = {
+                        viewModel.getCalories(searchString)
+                        searchString = ""
+                    }),
                 )
             }
         },
@@ -131,10 +131,6 @@ fun CaloreeListSection(
                 }
             }
         }
-
-        else -> {
-            EmptyScreenComponent(text = "No data, Please search")
-        }
     }
 }
 
@@ -146,7 +142,7 @@ fun CaloreeCard(
 ) {
     Card(
         elevation = 10.dp,
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier.padding(10.dp).fillMaxWidth(),
         onClick = {
             onNavigateToDetails(caloryItem.name)
         },
