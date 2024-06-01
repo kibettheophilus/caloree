@@ -21,7 +21,7 @@ fun Navigation(modifier: Modifier = Modifier) {
             CaloreesScreen(navController = navController)
         }
         composable("details/{food}") {
-            DetailScreen(name = it.arguments?.getString("food").toString())
+            DetailScreen(name = it.arguments?.getString("food").toString(), navController = navController)
         }
     }
 }
