@@ -3,13 +3,9 @@ package com.theophilus.kibet.caloree.data.sources
 import com.theophilus.kibet.caloree.data.mappers.toEntity
 import com.theophilus.kibet.caloree.data.mappers.toModel
 import com.theophilus.kibet.caloree.data.model.Caloree
-import com.theophilus.kibet.caloree.data.model.DataResult
-import com.theophiluskibet.caloree.local.dao.CaloreeDao
 import com.theophiluskibet.caloree.local.database.CaloreeDatabase
-import com.theophiluskibet.caloree.network.NetworkResult
 import com.theophiluskibet.caloree.network.api.CaloreeApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -61,6 +57,5 @@ class CaloreeRepositoryImpl(
      */
     override suspend fun getCalorieDetails(food: String): Flow<Caloree> {
         return flowOf(database.caloreeDao().getCaloryDetails(name = food).toModel())
-
     }
 }

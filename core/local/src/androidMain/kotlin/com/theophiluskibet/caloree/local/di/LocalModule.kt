@@ -13,7 +13,7 @@ import org.koin.dsl.module
 actual fun localModule() =
     module {
         single<CaloreeDatabase> { createDatabase(context = get()) }
-        //single { get<CaloreeDatabase>().caloreeDao() }
+        // single { get<CaloreeDatabase>().caloreeDao() }
     }
 
 /**

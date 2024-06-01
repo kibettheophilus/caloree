@@ -33,16 +33,17 @@ val networkModule =
                         Json {
                             ignoreUnknownKeys = true
                             isLenient = true
-                        }
+                        },
                     )
                 }
 
                 install(Logging) {
-                    logger = object : Logger {
-                        override fun log(message: String) {
-                            log(message)
+                    logger =
+                        object : Logger {
+                            override fun log(message: String) {
+                                log(message)
+                            }
                         }
-                    }
                     level = LogLevel.ALL
                 }
 
@@ -61,7 +62,7 @@ val networkModule =
         single {
             NetworkFetcher.Factory(
                 networkClient = { get<HttpClient>().asNetworkClient() },
-                cacheStrategy = { CacheStrategy() }
+                cacheStrategy = { CacheStrategy() },
             )
         }
     }
