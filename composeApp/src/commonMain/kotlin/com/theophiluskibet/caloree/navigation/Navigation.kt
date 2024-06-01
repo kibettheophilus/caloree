@@ -18,15 +18,16 @@ fun Navigation(modifier: Modifier = Modifier) {
         startDestination = "calorees",
     ) {
         composable("calorees") {
-            CaloreesScreen(onNavigateToDetails = { food ->
-                navController.navigate("details/$food")
-            }
+            CaloreesScreen(
+                onNavigateToDetails = { food ->
+                    navController.navigate("details/$food")
+                },
             )
         }
         composable("details/{food}") {
             DetailScreen(
                 name = it.arguments?.getString("food").toString(),
-                onNavigateToBack = { navController.popBackStack() }
+                onNavigateToBack = { navController.popBackStack() },
             )
         }
     }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
-    private val repository: CaloreeRepository
+    private val repository: CaloreeRepository,
 ) : ViewModel() {
     private val _caloreeUiState = MutableStateFlow<DetailsUiState>(DetailsUiState.Default)
     val caloreeUiState: StateFlow<DetailsUiState> = _caloreeUiState
