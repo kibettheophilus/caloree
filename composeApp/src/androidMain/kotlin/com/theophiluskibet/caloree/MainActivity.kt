@@ -1,6 +1,5 @@
 package com.theophiluskibet.caloree
 
-import com.theophiluskibet.caloree.di.App
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
