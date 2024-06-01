@@ -1,4 +1,4 @@
-package com.theophiluskibet.caloree.di
+package com.theophiluskibet.caloree
 
 import Greeting
 import androidx.compose.animation.AnimatedVisibility
@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import caloree.composeapp.generated.resources.Res
 import caloree.composeapp.generated.resources.compose_multiplatform
 import com.theophiluskibet.caloree.home.screens.calorees.HomeScreen
+import com.theophiluskibet.caloree.navigation.Navigation
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -38,6 +39,6 @@ fun App() {
 //                }
 //            }
 //        }
-        HomeScreen()
+        Navigation()
     }
 }
