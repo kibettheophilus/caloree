@@ -39,14 +39,13 @@ class CaloreeRepositoryImpl(
         val listOfFoods = query.replace("and", "").trim().split(" ")
         val calories = database.caloreeDao().getCaloriesByNames(listOfFoods)
         val response = caloreeApi.getCalories(query = query)
-        return calories.map { it.toModel() }
-//        return if (calories.size == listOfFoods.size) {
-//            calories.map { it.toModel() }
-//        } else {
-//            val response = caloreeApi.getCalories(query = query)
-//            database.caloreeDao().saveCalories()
-//            response.
-//        }
+        return if (calories.size == listOfFoods.size) {
+            calories.map { it.toModel() }
+        } else {
+            val response = caloreeApi.getCalories(query = query)
+            database.caloreeDao().saveCalories(response.calorieItemsDto.map { it.toEntity() })
+            response.calorieItemsDto.map { it.toEntity().toModel() }
+        }
     }
 
     /**
