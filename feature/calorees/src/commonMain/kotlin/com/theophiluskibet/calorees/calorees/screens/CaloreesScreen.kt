@@ -5,12 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
@@ -60,9 +57,9 @@ fun CaloreesScreen(
         topBar = {
             Column(
                 modifier =
-                Modifier
-                    .background(MaterialTheme.colors.surface)
-                    .padding(vertical = 8.dp, horizontal = 16.dp),
+                    Modifier
+                        .background(MaterialTheme.colors.surface)
+                        .padding(vertical = 8.dp, horizontal = 16.dp),
             ) {
                 OutlinedTextField(
                     value = searchString,
@@ -83,20 +80,20 @@ fun CaloreesScreen(
                     },
                     singleLine = true,
                     colors =
-                    TextFieldDefaults.textFieldColors(
-                        textColor = MaterialTheme.colors.onBackground,
-                        disabledLabelColor = MaterialTheme.colors.surface,
-                        focusedIndicatorColor = MaterialTheme.colors.surface,
-                        unfocusedIndicatorColor = MaterialTheme.colors.surface,
-                        disabledIndicatorColor = MaterialTheme.colors.surface,
-                        cursorColor = MaterialTheme.colors.primary,
-                    ),
+                        TextFieldDefaults.textFieldColors(
+                            textColor = MaterialTheme.colors.onBackground,
+                            disabledLabelColor = MaterialTheme.colors.surface,
+                            focusedIndicatorColor = MaterialTheme.colors.surface,
+                            unfocusedIndicatorColor = MaterialTheme.colors.surface,
+                            disabledIndicatorColor = MaterialTheme.colors.surface,
+                            cursorColor = MaterialTheme.colors.primary,
+                        ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions =
-                    KeyboardActions(onSearch = {
-                        viewModel.getCalories(searchString)
-                        searchString = ""
-                    }),
+                        KeyboardActions(onSearch = {
+                            viewModel.getCalories(searchString)
+                            searchString = ""
+                        }),
                 )
             }
         },
@@ -155,55 +152,55 @@ fun CaloreeCard(
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = caloryItem.name.capitalize(),
                 fontSize = 24.sp,
                 color = Color.Black,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
             Column(modifier = Modifier.padding(horizontal = 16.dp).weight(2f).fillMaxWidth()) {
                 Row(
                     modifier = Modifier.padding(vertical = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "Calories:",
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
                     )
                     Text(
                         text = "${caloryItem.calories} grams",
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
                     )
                 }
                 Row(
                     modifier = Modifier.padding(vertical = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "Proteins:",
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
                     )
                     Text(
                         text = "${caloryItem.proteinGrams} grams",
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
                     )
                 }
                 Row(
                     modifier = Modifier.padding(vertical = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "Fats:",
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
                     )
                     Text(
                         text = "${caloryItem.fatTotalGrams} grams",
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
                     )
                 }
             }
