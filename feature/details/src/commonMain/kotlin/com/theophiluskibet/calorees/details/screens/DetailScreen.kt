@@ -1,11 +1,16 @@
 package com.theophiluskibet.calorees.details.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -15,9 +20,9 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.theophiluskibet.caloree.designsystem.components.EmptyScreenComponent
 import com.theophiluskibet.caloree.designsystem.components.LoadingComponent
 import com.theophiluskibet.calorees.details.utils.DetailsUiState
@@ -64,14 +69,35 @@ fun DetailScreen(
                 }
 
                 is DetailsUiState.Success -> {
-                    Column(
-                        modifier =
-                            Modifier
-                                .fillMaxSize(),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Text("${caloreeUiState.data.calories}")
+                    Column {
+                        Row {
+                            DetailItem(
+                                modifier = Modifier.weight(1f),
+                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                                title = "Calories",
+                                value = "${caloreeUiState.data.calories}kcal",
+                            )
+                            DetailItem(
+                                modifier = Modifier.weight(1f),
+                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                                title = "Proteins",
+                                value = "${caloreeUiState.data.proteinGrams}grams",
+                            )
+                        }
+                        Row {
+                            DetailItem(
+                                modifier = Modifier.weight(1f),
+                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                                title = "Carbohydrates",
+                                value = "${caloreeUiState.data.carbohydratesTotalGrams}grams",
+                            )
+                            DetailItem(
+                                modifier = Modifier.weight(1f),
+                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                                title = "Fats",
+                                value = "${caloreeUiState.data.fatTotalGrams}grams",
+                            )
+                        }
                     }
                 }
 
@@ -79,6 +105,32 @@ fun DetailScreen(
                     // do nothing
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun DetailItem(
+    modifier: Modifier,
+    borderStroke: BorderStroke,
+    title: String,
+    value: String,
+) {
+    Card(
+        modifier =
+            modifier
+                .padding(8.dp),
+        border = borderStroke,
+    ) {
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.surface)
+                    .padding(16.dp),
+        ) {
+            Text(text = title)
+            Text(text = value)
         }
     }
 }
