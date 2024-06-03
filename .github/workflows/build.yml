@@ -6,9 +6,9 @@ on:
       - master
 
 jobs:
-  build:
+  lint-checks:
+    name: Lint Checks
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,14 +23,9 @@ jobs:
         run: |
           ./gradlew ktlintCheck
 
-  #TODO -> figure out why build fails
-  #      - name: Build Android App
-  #        run: |
-  #          ./gradlew build
-
   run-tests:
+    name: Tests
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -44,3 +39,24 @@ jobs:
       - name: Run tests
         run: |
           ./gradlew testDebugUnitTest
+
+  build:
+    needs:
+      - lint-checks
+      - run-tests
+    name: Assemble Android Apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "corretto"
+          java-version: "17"
+
+      - name: Build Android App
+        run: |
+          ./gradlew build
+  
