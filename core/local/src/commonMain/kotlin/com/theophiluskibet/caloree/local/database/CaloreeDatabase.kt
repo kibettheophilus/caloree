@@ -19,6 +19,10 @@ abstract class CaloreeDatabase : RoomDatabase(), DB {
     }
 }
 
+/**
+ * Hack copied from
+ * https://github.com/joreilly/FantasyPremierLeague/blob/55f35ff9ef2bc25f6c7d42862196990b4a470f17/common/src/commonMain/kotlin/dev/johnoreilly/common/database/AppDatabase.kt#L38
+ */
 interface DB {
     fun clearAllTables(): Unit {}
 }
