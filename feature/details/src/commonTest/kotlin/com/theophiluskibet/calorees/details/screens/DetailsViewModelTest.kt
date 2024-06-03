@@ -16,17 +16,18 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class DetailsViewModelTest {
-    private val repository = FakeCaloreeRepository()
+    private lateinit var repository: FakeCaloreeRepository
     private lateinit var detailsViewModel: DetailsViewModel
 
     @BeforeTest
     fun setup() {
         Dispatchers.setMain(StandardTestDispatcher())
+        repository = FakeCaloreeRepository()
         detailsViewModel = DetailsViewModel(repository = repository)
     }
 
     @AfterTest
-    fun clean() {
+    fun tearDown() {
         Dispatchers.resetMain()
     }
 
