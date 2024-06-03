@@ -11,6 +11,14 @@ import com.theophiluskibet.caloree.local.entities.CaloreeEntity
  * @param version current version of the db
  */
 @Database(entities = [CaloreeEntity::class], version = 1)
-abstract class CaloreeDatabase : RoomDatabase() {
+abstract class CaloreeDatabase : RoomDatabase(), DB {
     abstract fun caloreeDao(): CaloreeDao
+
+    override fun clearAllTables() {
+        super.clearAllTables()
+    }
+}
+
+interface DB {
+    fun clearAllTables(): Unit {}
 }
