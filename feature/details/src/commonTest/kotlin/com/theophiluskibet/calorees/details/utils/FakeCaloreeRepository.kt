@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class FakeCaloreeRepository : CaloreeRepository {
     var shouldThrowError = false
+
     override suspend fun searchCalories(query: String): List<Caloree> {
         if (shouldThrowError) {
             throw RuntimeException("An error occured")
@@ -26,19 +27,20 @@ class FakeCaloreeRepository : CaloreeRepository {
     }
 }
 
-val searchData = listOf(
-    Caloree(
-        name = "meat",
-        calories = 20.0,
-        carbohydratesTotalGrams = 20.0,
-        cholesterolMilliGrams = 100,
-        fatSaturatedGrams = 30.0,
-        fatTotalGrams = 44.0,
-        fiberGrams = 30.0,
-        potassiumMilliGrams = 261,
-        proteinGrams = 104.0,
-        servingSizeGrams = 100.0,
-        sodiumMilliGrams = 127,
-        sugarGrams = 68.0,
+val searchData =
+    listOf(
+        Caloree(
+            name = "meat",
+            calories = 20.0,
+            carbohydratesTotalGrams = 20.0,
+            cholesterolMilliGrams = 100,
+            fatSaturatedGrams = 30.0,
+            fatTotalGrams = 44.0,
+            fiberGrams = 30.0,
+            potassiumMilliGrams = 261,
+            proteinGrams = 104.0,
+            servingSizeGrams = 100.0,
+            sodiumMilliGrams = 127,
+            sugarGrams = 68.0,
+        ),
     )
-)

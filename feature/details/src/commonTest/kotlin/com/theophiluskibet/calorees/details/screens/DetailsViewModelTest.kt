@@ -1,6 +1,5 @@
 package com.theophiluskibet.calorees.details.screens
 
-import com.theophilus.kibet.caloree.data.sources.CaloreeRepositoryImpl
 import com.theophiluskibet.calorees.details.utils.DetailsUiState
 import com.theophiluskibet.calorees.details.utils.FakeCaloreeRepository
 import com.theophiluskibet.calorees.details.utils.searchData
@@ -15,10 +14,8 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class DetailsViewModelTest {
-
     private val repository = FakeCaloreeRepository()
     private lateinit var detailsViewModel: DetailsViewModel
 
@@ -34,9 +31,10 @@ class DetailsViewModelTest {
     }
 
     @Test
-    fun `given DetailsViewModel- initial details ui state is default`() = runTest {
-        assertEquals(detailsViewModel.caloreeUiState.value, DetailsUiState.Default)
-    }
+    fun `given DetailsViewModel- initial details ui state is default`() =
+        runTest {
+            assertEquals(detailsViewModel.caloreeUiState.value, DetailsUiState.Default)
+        }
 
     @Test
     fun `given string of food - when getCalireeDetails is invoked - then details ui state is loading`() =
@@ -64,7 +62,7 @@ class DetailsViewModelTest {
             // then
             assertEquals(
                 DetailsUiState.Success(data = searchData.first()),
-                detailsViewModel.caloreeUiState.value
+                detailsViewModel.caloreeUiState.value,
             )
         }
 
@@ -83,7 +81,7 @@ class DetailsViewModelTest {
             // then
             assertEquals(
                 DetailsUiState.Error(errorMessage = "An error occured"),
-                detailsViewModel.caloreeUiState.value
+                detailsViewModel.caloreeUiState.value,
             )
         }
 }

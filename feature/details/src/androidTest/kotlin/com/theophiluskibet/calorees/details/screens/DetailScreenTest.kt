@@ -8,7 +8,6 @@ import org.junit.Rule
 import org.junit.Test
 
 class DetailScreenTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -18,7 +17,7 @@ class DetailScreenTest {
             MaterialTheme {
                 DetailScreen(
                     name = "rice",
-                    onNavigateToBack = {}
+                    onNavigateToBack = {},
                 )
             }
             composeTestRule.onNodeWithTag("loading").assertIsDisplayed()
