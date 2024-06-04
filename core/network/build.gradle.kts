@@ -12,6 +12,13 @@ kotlin {
             implementation(libs.koin.core)
         }
 
+        commonTest.dependencies {
+            implementation(libs.ktor.client.mock)
+            implementation(libs.kotlin.test.junit)
+            implementation(libs.kotlin.test)
+            implementation(libs.coroutines.test)
+        }
+
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
         }
