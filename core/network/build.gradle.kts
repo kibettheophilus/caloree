@@ -40,11 +40,7 @@ buildkonfig {
     packageName = "com.theophiluskibet.caloree.network"
 
     defaultConfigs {
-        val apiKey: String = gradleLocalProperties(rootDir).getProperty("API_KEY")
-
-        require(apiKey.isNotEmpty()) {
-            "Register your api key from developer and place it in local.properties as `API_KEY`"
-        }
+        val apiKey: String = gradleLocalProperties(rootDir).getProperty("API_KEY") ?: ""
 
         buildConfigField(STRING, "API_KEY", apiKey)
     }
