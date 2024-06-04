@@ -60,50 +60,54 @@ fun DetailScreen(
             )
         },
     ) { innerPadding ->
+        DetailScreenContent(caloreeUiState = caloreeUiState)
+    }
+}
 
-        Column {
-            when (caloreeUiState) {
-                is DetailsUiState.Loading -> LoadingComponent()
-                is DetailsUiState.Error -> {
-                    EmptyScreenComponent(text = caloreeUiState.errorMessage)
-                }
+@Composable
+fun DetailScreenContent(modifier: Modifier = Modifier, caloreeUiState: DetailsUiState) {
+    Column {
+        when (caloreeUiState) {
+            is DetailsUiState.Loading -> LoadingComponent()
+            is DetailsUiState.Error -> {
+                EmptyScreenComponent(text = caloreeUiState.errorMessage)
+            }
 
-                is DetailsUiState.Success -> {
-                    Column {
-                        Row {
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Calories",
-                                value = "${caloreeUiState.data.calories}kcal",
-                            )
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Proteins",
-                                value = "${caloreeUiState.data.proteinGrams}grams",
-                            )
-                        }
-                        Row {
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Carbohydrates",
-                                value = "${caloreeUiState.data.carbohydratesTotalGrams}grams",
-                            )
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Fats",
-                                value = "${caloreeUiState.data.fatTotalGrams}grams",
-                            )
-                        }
+            is DetailsUiState.Success -> {
+                Column {
+                    Row {
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Calories",
+                            value = "${caloreeUiState.data.calories}kcal",
+                        )
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Proteins",
+                            value = "${caloreeUiState.data.proteinGrams}grams",
+                        )
+                    }
+                    Row {
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Carbohydrates",
+                            value = "${caloreeUiState.data.carbohydratesTotalGrams}grams",
+                        )
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Fats",
+                            value = "${caloreeUiState.data.fatTotalGrams}grams",
+                        )
                     }
                 }
+            }
 
-                is DetailsUiState.Default -> {
-                    // do nothing
-                }
+            is DetailsUiState.Default -> {
+                // do nothing
             }
         }
     }
@@ -118,16 +122,16 @@ fun DetailItem(
 ) {
     Card(
         modifier =
-            modifier
-                .padding(8.dp),
+        modifier
+            .padding(8.dp),
         border = borderStroke,
     ) {
         Column(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colors.surface)
-                    .padding(16.dp),
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colors.surface)
+                .padding(16.dp),
         ) {
             Text(text = title)
             Text(text = value)
