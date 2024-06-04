@@ -20,6 +20,7 @@ import org.koin.dsl.module
 /**
  * [BASE_URL] server base url
  * [networkModule] provide instances of dependencies needed by classes
+ * [platformModule] provides the client specific engine
  */
 const val BASE_URL = "api.calorieninjas.com/v1"
 
@@ -32,7 +33,11 @@ val networkModule =
 
 expect fun platformModule(): Module
 
-
+/**
+ * Creates an http client used when making network calls, extracted so that it can be reused for unit tests
+ * @param engine
+ * @return [HttpClient]
+ */
 fun createHttpClient(engine: HttpClientEngine) = HttpClient(engine = engine) {
     install(ContentNegotiation) {
         json(
