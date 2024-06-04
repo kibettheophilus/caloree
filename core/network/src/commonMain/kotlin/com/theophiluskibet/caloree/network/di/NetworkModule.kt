@@ -1,6 +1,7 @@
 package com.theophiluskibet.caloree.network.di
 
 import com.theophiluskibet.caloree.network.api.CaloreeApi
+import com.theophiluskibet.caloree.network.client.createHttpClient
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.DefaultRequest
@@ -18,12 +19,9 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 /**
- * [BASE_URL] server base url
  * [networkModule] provide instances of dependencies needed by classes
  * [platformModule] provides the client specific engine
  */
-const val BASE_URL = "api.calorieninjas.com/v1"
-
 val networkModule =
     module {
         includes(platformModule())
@@ -32,38 +30,3 @@ val networkModule =
     }
 
 expect fun platformModule(): Module
-
-/**
- * Creates an http client used when making network calls, extracted so that it can be reused for unit tests
- * @param engine
- * @return [HttpClient]
- */
-fun createHttpClient(engine: HttpClientEngine) = HttpClient(engine = engine) {
-    install(ContentNegotiation) {
-        json(
-            Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-            },
-        )
-    }
-
-    install(Logging) {
-        logger =
-            object : Logger {
-                override fun log(message: String) {
-                    // log(message)
-                }
-            }
-        level = LogLevel.ALL
-    }
-
-    install(DefaultRequest) {
-        url {
-            host = BASE_URL
-            protocol = URLProtocol.HTTPS
-        }
-        header(HttpHeaders.ContentType, ContentType.Application.Json)
-        header("X-Api-Key", "8/MqBej61B6ALLuEf7cIWg==tJbmaSTQHGZd6wLJ")
-    }
-}
