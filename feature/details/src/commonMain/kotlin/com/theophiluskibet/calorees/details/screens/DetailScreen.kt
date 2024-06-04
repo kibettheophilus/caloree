@@ -65,7 +65,10 @@ fun DetailScreen(
 }
 
 @Composable
-fun DetailScreenContent(modifier: Modifier = Modifier, caloreeUiState: DetailsUiState) {
+fun DetailScreenContent(
+    modifier: Modifier = Modifier,
+    caloreeUiState: DetailsUiState,
+) {
     Column {
         when (caloreeUiState) {
             is DetailsUiState.Loading -> LoadingComponent()
@@ -122,16 +125,16 @@ fun DetailItem(
 ) {
     Card(
         modifier =
-        modifier
-            .padding(8.dp),
+            modifier
+                .padding(8.dp),
         border = borderStroke,
     ) {
         Column(
             modifier =
-            Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colors.surface)
-                .padding(16.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.surface)
+                    .padding(16.dp),
         ) {
             Text(text = title)
             Text(text = value)

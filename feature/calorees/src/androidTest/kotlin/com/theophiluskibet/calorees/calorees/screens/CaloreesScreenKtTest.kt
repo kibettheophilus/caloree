@@ -7,9 +7,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import org.junit.Rule
 import org.junit.Test
 
-
 class CaloreesScreenKtTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -18,7 +16,7 @@ class CaloreesScreenKtTest {
         composeTestRule.setContent {
             MaterialTheme {
                 CaloreesScreen(
-                    onNavigateToDetails = {}
+                    onNavigateToDetails = {},
                 )
             }
         }

@@ -19,7 +19,7 @@ abstract class CaloreeDatabase : RoomDatabase(), DB {
     }
 }
 
-internal const val dbFileName = "caloree.db"
+internal const val DB_FILE_NAME = "caloree.db"
 
 /**
  * Hack copied from

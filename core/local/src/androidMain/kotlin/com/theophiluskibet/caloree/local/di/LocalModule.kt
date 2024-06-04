@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.theophiluskibet.caloree.local.database.CaloreeDatabase
-import com.theophiluskibet.caloree.local.database.dbFileName
+import com.theophiluskibet.caloree.local.database.DB_FILE_NAME
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 
@@ -22,7 +22,7 @@ actual fun localModule() =
  * @param context current state of the application
  */
 fun createDatabase(context: Context): CaloreeDatabase {
-    val dbFile = context.getDatabasePath(dbFileName)
+    val dbFile = context.getDatabasePath(DB_FILE_NAME)
     return Room.databaseBuilder<CaloreeDatabase>(
         context = context,
         name = dbFile.absolutePath,

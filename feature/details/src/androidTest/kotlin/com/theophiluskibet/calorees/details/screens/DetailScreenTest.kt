@@ -20,7 +20,7 @@ class DetailScreenTest {
         composeTestRule.setContent {
             MaterialTheme {
                 DetailScreenContent(
-                    caloreeUiState = DetailsUiState.Loading
+                    caloreeUiState = DetailsUiState.Loading,
                 )
             }
             composeTestRule.onNodeWithTag("loading").assertIsDisplayed()
