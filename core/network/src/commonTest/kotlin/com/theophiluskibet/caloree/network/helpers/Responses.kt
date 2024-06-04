@@ -1,6 +1,7 @@
 package com.theophiluskibet.caloree.network.helpers
 
-val apiResponse = """
+val apiResponse =
+    """
     {
         "items": [
             {
@@ -19,4 +20,4 @@ val apiResponse = """
             }
         ]
     }
-""".trimIndent()
+    """.trimIndent()

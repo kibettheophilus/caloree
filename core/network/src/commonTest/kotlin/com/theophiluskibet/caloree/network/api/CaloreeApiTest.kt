@@ -9,23 +9,27 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class CaloreeApiTest {
-    private fun generateFakeApi(statusCode: HttpStatusCode, response: String) =
-        CaloreeApi(
-            httpClient = createHttpClient(
+    private fun generateFakeApi(
+        statusCode: HttpStatusCode,
+        response: String,
+    ) = CaloreeApi(
+        httpClient =
+            createHttpClient(
                 generateFakeEngine(
                     statusCode = statusCode,
-                    response = response
-                )
-            )
-        )
+                    response = response,
+                ),
+            ),
+    )
 
     @Test
     fun `given CaloreeApi - when getcalorees query is success - returns a body of the search reasult`() =
         runTest {
-            val apiCall = generateFakeApi(
-                statusCode = HttpStatusCode.OK,
-                response = apiResponse
-            )
+            val apiCall =
+                generateFakeApi(
+                    statusCode = HttpStatusCode.OK,
+                    response = apiResponse,
+                )
 
             val response = apiCall.getCalories(query = "rice")
 

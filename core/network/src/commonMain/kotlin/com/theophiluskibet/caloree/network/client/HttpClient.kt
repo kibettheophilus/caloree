@@ -23,32 +23,33 @@ import kotlinx.serialization.json.Json
 
 const val BASE_URL = "api.calorieninjas.com/v1"
 
-fun createHttpClient(engine: HttpClientEngine) = HttpClient(engine = engine) {
-    install(ContentNegotiation) {
-        json(
-            Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-            },
-        )
-    }
-
-    install(Logging) {
-        logger =
-            object : Logger {
-                override fun log(message: String) {
-                    // log(message)
-                }
-            }
-        level = LogLevel.ALL
-    }
-
-    install(DefaultRequest) {
-        url {
-            host = BASE_URL
-            protocol = URLProtocol.HTTPS
+fun createHttpClient(engine: HttpClientEngine) =
+    HttpClient(engine = engine) {
+        install(ContentNegotiation) {
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                },
+            )
         }
-        header(HttpHeaders.ContentType, ContentType.Application.Json)
-        header("X-Api-Key", "8/MqBej61B6ALLuEf7cIWg==tJbmaSTQHGZd6wLJ")
+
+        install(Logging) {
+            logger =
+                object : Logger {
+                    override fun log(message: String) {
+                        // log(message)
+                    }
+                }
+            level = LogLevel.ALL
+        }
+
+        install(DefaultRequest) {
+            url {
+                host = BASE_URL
+                protocol = URLProtocol.HTTPS
+            }
+            header(HttpHeaders.ContentType, ContentType.Application.Json)
+            header("X-Api-Key", "8/MqBej61B6ALLuEf7cIWg==tJbmaSTQHGZd6wLJ")
+        }
     }
-}
