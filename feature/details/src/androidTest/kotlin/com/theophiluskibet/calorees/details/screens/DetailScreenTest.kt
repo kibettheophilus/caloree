@@ -36,7 +36,7 @@ class DetailScreenTest {
         composeTestRule.setContent {
             MaterialTheme {
                 DetailScreenContent(
-                    caloreeUiState = DetailsUiState.Error(errorMessage = "An error occured")
+                    caloreeUiState = DetailsUiState.Error(errorMessage = "An error occured"),
                 )
             }
         }
@@ -50,7 +50,7 @@ class DetailScreenTest {
     fun shouldShowCaloreeDetailsOnSuccess() {
         composeTestRule.setContent {
             DetailScreenContent(
-                caloreeUiState = DetailsUiState.Success(data = caloreeDetails)
+                caloreeUiState = DetailsUiState.Success(data = caloreeDetails),
             )
         }
         composeTestRule.onNodeWithTag("caloree_details").isDisplayed()

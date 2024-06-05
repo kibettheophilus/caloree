@@ -78,7 +78,7 @@ fun DetailScreenContent(
             }
 
             is DetailsUiState.Success -> {
-                Column(modifier=Modifier.testTag("caloree_details")) {
+                Column(modifier = Modifier.testTag("caloree_details")) {
                     Row {
                         DetailItem(
                             modifier = Modifier.weight(1f),

@@ -35,7 +35,7 @@ class CaloreesScreenKtTest {
             MaterialTheme {
                 CaloreeListSection(
                     caloreesUiState = CaloreesUiState.Loading,
-                    onNavigateToDetails = {}
+                    onNavigateToDetails = {},
                 )
             }
         }
@@ -66,7 +66,7 @@ class CaloreesScreenKtTest {
             MaterialTheme {
                 CaloreeListSection(
                     caloreesUiState = CaloreesUiState.Success(data = caloreeList),
-                    onNavigateToDetails = {}
+                    onNavigateToDetails = {},
                 )
             }
         }

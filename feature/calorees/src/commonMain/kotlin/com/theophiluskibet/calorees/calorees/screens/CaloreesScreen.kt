@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -57,9 +56,9 @@ fun CaloreesScreen(
         topBar = {
             Column(
                 modifier =
-                Modifier
-                    .background(MaterialTheme.colors.surface)
-                    .padding(vertical = 8.dp, horizontal = 16.dp),
+                    Modifier
+                        .background(MaterialTheme.colors.surface)
+                        .padding(vertical = 8.dp, horizontal = 16.dp),
             ) {
                 OutlinedTextField(
                     value = searchString,
@@ -80,20 +79,20 @@ fun CaloreesScreen(
                     },
                     singleLine = true,
                     colors =
-                    TextFieldDefaults.textFieldColors(
-                        textColor = MaterialTheme.colors.onBackground,
-                        disabledLabelColor = MaterialTheme.colors.surface,
-                        focusedIndicatorColor = MaterialTheme.colors.surface,
-                        unfocusedIndicatorColor = MaterialTheme.colors.surface,
-                        disabledIndicatorColor = MaterialTheme.colors.surface,
-                        cursorColor = MaterialTheme.colors.primary,
-                    ),
+                        TextFieldDefaults.textFieldColors(
+                            textColor = MaterialTheme.colors.onBackground,
+                            disabledLabelColor = MaterialTheme.colors.surface,
+                            focusedIndicatorColor = MaterialTheme.colors.surface,
+                            unfocusedIndicatorColor = MaterialTheme.colors.surface,
+                            disabledIndicatorColor = MaterialTheme.colors.surface,
+                            cursorColor = MaterialTheme.colors.primary,
+                        ),
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions =
-                    KeyboardActions(onSearch = {
-                        viewModel.getCalories(searchString)
-                        searchString = ""
-                    }),
+                        KeyboardActions(onSearch = {
+                            viewModel.getCalories(searchString)
+                            searchString = ""
+                        }),
                 )
             }
         },
