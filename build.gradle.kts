@@ -20,6 +20,7 @@ subprojects {
         }
         filter {
             exclude("**/generated/**")
+            exclude("**/buildkonfig/**")
         }
     }
 }
