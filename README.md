@@ -11,6 +11,7 @@ API_KEY = <YOUR_API_KEY>
 
 ## Architecture
 The app has been built using a modularized layered architecture. The app has the following modules:
+- **composeApp** - entry point to applications, contains navigation and overral di logic
 - **details** - feature module to handle logic related to a single calorie food details i.e has a viewmodel and composambles
 - **calorees** - feature module to handle logic related to searched list of calorie food i.e has a viewmodel and composambles
 - **designsystem** - shared lib which contains shared components between the feature modules
