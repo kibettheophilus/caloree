@@ -18,6 +18,17 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
         }
+
+        commonTest.dependencies {
+            implementation(libs.kotlin.test.junit)
+            implementation(libs.kotlin.test)
+            implementation(libs.junit)
+            implementation(libs.coroutines.test)
+        }
+
+        androidMain.dependencies {
+            implementation(libs.compose.ui.test.junit4)
+        }
     }
 }
 android {

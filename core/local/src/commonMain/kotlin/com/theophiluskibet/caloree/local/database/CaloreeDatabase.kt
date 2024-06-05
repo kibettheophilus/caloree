@@ -11,6 +11,20 @@ import com.theophiluskibet.caloree.local.entities.CaloreeEntity
  * @param version current version of the db
  */
 @Database(entities = [CaloreeEntity::class], version = 1)
-abstract class CaloreeDatabase : RoomDatabase() {
+abstract class CaloreeDatabase : RoomDatabase(), DB {
     abstract fun caloreeDao(): CaloreeDao
+
+    override fun clearAllTables() {
+        super.clearAllTables()
+    }
+}
+
+internal const val DB_FILE_NAME = "caloree.db"
+
+/**
+ * Hack copied from
+ * https://github.com/joreilly/FantasyPremierLeague
+ */
+interface DB {
+    fun clearAllTables() {}
 }

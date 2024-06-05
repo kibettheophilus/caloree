@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -32,14 +31,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.theophilus.kibet.caloree.data.model.Caloree
 import com.theophiluskibet.caloree.designsystem.components.EmptyScreenComponent
 import com.theophiluskibet.caloree.designsystem.components.LoadingComponent
-import com.theophiluskibet.calorees.calorees.utils.UiState
+import com.theophiluskibet.calorees.calorees.utils.CaloreesUiState
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
@@ -99,7 +98,7 @@ fun CaloreesScreen(
         },
     ) { innerPadding ->
         CaloreeListSection(
-            uiState = caloryUiState,
+            caloreesUiState = caloryUiState,
             onNavigateToDetails = onNavigateToDetails,
         )
     }
@@ -107,28 +106,26 @@ fun CaloreesScreen(
 
 @Composable
 fun CaloreeListSection(
-    uiState: UiState,
+    caloreesUiState: CaloreesUiState,
     onNavigateToDetails: (String) -> Unit,
 ) {
-    when (uiState) {
-        is UiState.Error -> {
-            EmptyScreenComponent(text = uiState.errorMessage)
+    when (caloreesUiState) {
+        is CaloreesUiState.Error -> {
+            EmptyScreenComponent(text = caloreesUiState.errorMessage)
         }
 
-        is UiState.Loading -> LoadingComponent()
-        is UiState.Default -> EmptyScreenComponent(text = "No data, Please search")
-        is UiState.Success -> {
-            if (uiState.data!!.isEmpty()) {
+        is CaloreesUiState.Loading -> LoadingComponent()
+        is CaloreesUiState.Default -> EmptyScreenComponent(text = "No data, Please search")
+        is CaloreesUiState.Success -> {
+            if (caloreesUiState.data!!.isEmpty()) {
                 EmptyScreenComponent(text = "No data, Please search")
             } else {
-                Column(modifier = Modifier.fillMaxSize()) {
-                    LazyColumn {
-                        items(uiState.data) {
-                            CaloreeCard(
-                                caloryItem = it,
-                                onNavigateToDetails = onNavigateToDetails,
-                            )
-                        }
+                LazyColumn(modifier = Modifier.testTag("caloree_list")) {
+                    items(caloreesUiState.data) {
+                        CaloreeCard(
+                            caloryItem = it,
+                            onNavigateToDetails = onNavigateToDetails,
+                        )
                     }
                 }
             }

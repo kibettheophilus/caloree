@@ -12,9 +12,9 @@ kotlin {
             implementation(libs.sqlite.bundled)
         }
 
-//        sourceSets.commonMain {
-//            kotlin.srcDir("build/generated/ksp/metadata")
-//        }
+        sourceSets.commonMain {
+            kotlin.srcDir("build/generated/ksp/metadata")
+        }
     }
 }
 

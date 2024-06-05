@@ -22,6 +22,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.theophiluskibet.caloree.designsystem.components.EmptyScreenComponent
 import com.theophiluskibet.caloree.designsystem.components.LoadingComponent
@@ -60,50 +61,57 @@ fun DetailScreen(
             )
         },
     ) { innerPadding ->
+        DetailScreenContent(caloreeUiState = caloreeUiState)
+    }
+}
 
-        Column {
-            when (caloreeUiState) {
-                is DetailsUiState.Loading -> LoadingComponent()
-                is DetailsUiState.Error -> {
-                    EmptyScreenComponent(text = caloreeUiState.errorMessage)
-                }
+@Composable
+fun DetailScreenContent(
+    modifier: Modifier = Modifier,
+    caloreeUiState: DetailsUiState,
+) {
+    Column {
+        when (caloreeUiState) {
+            is DetailsUiState.Loading -> LoadingComponent()
+            is DetailsUiState.Error -> {
+                EmptyScreenComponent(text = caloreeUiState.errorMessage)
+            }
 
-                is DetailsUiState.Success -> {
-                    Column {
-                        Row {
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Calories",
-                                value = "${caloreeUiState.data.calories}kcal",
-                            )
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Proteins",
-                                value = "${caloreeUiState.data.proteinGrams}grams",
-                            )
-                        }
-                        Row {
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Carbohydrates",
-                                value = "${caloreeUiState.data.carbohydratesTotalGrams}grams",
-                            )
-                            DetailItem(
-                                modifier = Modifier.weight(1f),
-                                borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
-                                title = "Fats",
-                                value = "${caloreeUiState.data.fatTotalGrams}grams",
-                            )
-                        }
+            is DetailsUiState.Success -> {
+                Column(modifier = Modifier.testTag("caloree_details")) {
+                    Row {
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Calories",
+                            value = "${caloreeUiState.data.calories}kcal",
+                        )
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Proteins",
+                            value = "${caloreeUiState.data.proteinGrams}grams",
+                        )
+                    }
+                    Row {
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Carbohydrates",
+                            value = "${caloreeUiState.data.carbohydratesTotalGrams}grams",
+                        )
+                        DetailItem(
+                            modifier = Modifier.weight(1f),
+                            borderStroke = BorderStroke(width = 0.5.dp, color = Color.Black),
+                            title = "Fats",
+                            value = "${caloreeUiState.data.fatTotalGrams}grams",
+                        )
                     }
                 }
+            }
 
-                is DetailsUiState.Default -> {
-                    // do nothing
-                }
+            is DetailsUiState.Default -> {
+                // do nothing
             }
         }
     }
