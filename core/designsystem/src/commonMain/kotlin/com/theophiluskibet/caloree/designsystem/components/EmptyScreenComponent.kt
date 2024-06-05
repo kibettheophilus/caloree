@@ -1,6 +1,7 @@
 package com.theophiluskibet.caloree.designsystem.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,7 +23,11 @@ fun EmptyScreenComponent(text: String) {
         modifier = Modifier.fillMaxSize().testTag("empty_component"),
         contentAlignment = Alignment.Center
     ) {
-        Column {
+        Column(
+            modifier = Modifier,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
             Image(
                 modifier = Modifier.size(250.dp).padding(bottom = 10.dp),
                 painter = painterResource(Res.drawable.empty_data),
