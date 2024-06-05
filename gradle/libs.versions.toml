@@ -27,6 +27,7 @@ koin = "3.5.0"
 koin-cmp = "1.2.0-Beta4"
 ksp = "2.0.0-1.0.21"
 lifecycle = "2.8.0"
+moduleGraph = "0.10.0"
 navigation = "2.7.0-alpha07"
 sqlite = "2.5.0-SNAPSHOT"
 
@@ -97,3 +98,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidx-room" }
 buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
+module-graph = { id = "dev.iurysouza.modulegraph", version.ref = "moduleGraph" }

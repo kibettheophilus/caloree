@@ -1,3 +1,4 @@
+import dev.iurysouza.modulegraph.Theme
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -9,6 +10,7 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.ktlint) apply false
+    alias(libs.plugins.module.graph)
 }
 
 subprojects {
@@ -19,6 +21,25 @@ subprojects {
         }
         filter {
             exclude("**/generated/**")
+            exclude("**/build/**")
         }
     }
+}
+
+moduleGraphConfig {
+    readmePath.set("./README.md")
+    heading.set("### Module Graph")
+    theme.set(
+        Theme.BASE(
+            mapOf(
+                "primaryTextColor" to "#fff",
+                "primaryColor" to "#5a4f7c",
+                "primaryBorderColor" to "#5a4f7c",
+                "lineColor" to "#f5a623",
+                "tertiaryColor" to "#40375c",
+                "fontSize" to "12px",
+            ),
+            focusColor = "#FA8140"
+        ),
+    )
 }

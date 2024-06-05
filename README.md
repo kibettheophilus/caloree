@@ -1,14 +1,30 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+### Module Graph
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {"primaryTextColor":"#fff","primaryColor":"#5a4f7c","primaryBorderColor":"#5a4f7c","lineColor":"#f5a623","tertiaryColor":"#40375c","fontSize":"12px"}
+  }
+}%%
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
-
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+graph LR
+  subgraph :core
+    :core:data["data"]
+    :core:designsystem["designsystem"]
+    :core:network["network"]
+    :core:local["local"]
+  end
+  subgraph :feature
+    :feature:calorees["calorees"]
+    :feature:details["details"]
+  end
+  :feature:calorees --> :core:data
+  :feature:calorees --> :core:designsystem
+  :composeApp --> :feature:calorees
+  :composeApp --> :feature:details
+  :core:data --> :core:network
+  :core:data --> :core:local
+  :feature:details --> :core:data
+  :feature:details --> :core:designsystem
+```
