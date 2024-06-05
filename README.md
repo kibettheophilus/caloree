@@ -17,6 +17,7 @@ The app has been built using a modularized layered architecture. The app has the
 - **data** - shared lib which contains the implementation of selecting data between `local` and `network` modules.
 - **local** - shared lib which contains logic for saving data to local device storage
 - **network** - shared lib which contains logic for fetching data from network
+- **build-logic** - not an application module but rather a configuration module for setting reausable configs across the app
 
 ##### Modularization Graph
 ```mermaid
