@@ -1,6 +1,6 @@
 package com.theophiluskibet.caloree.network.api
 
-import com.theophiluskibet.caloree.network.di.createHttpClient
+import com.theophiluskibet.caloree.network.client.createHttpClient
 import com.theophiluskibet.caloree.network.helpers.apiResponse
 import com.theophiluskibet.caloree.network.helpers.generateFakeEngine
 import io.ktor.http.HttpStatusCode
