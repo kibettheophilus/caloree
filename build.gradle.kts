@@ -1,3 +1,4 @@
+import dev.iurysouza.modulegraph.Theme
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -28,4 +29,17 @@ subprojects {
 moduleGraphConfig {
     readmePath.set("./README.md")
     heading.set("### Module Graph")
+    theme.set(
+        Theme.BASE(
+            mapOf(
+                "primaryTextColor" to "#fff",
+                "primaryColor" to "#5a4f7c",
+                "primaryBorderColor" to "#5a4f7c",
+                "lineColor" to "#f5a623",
+                "tertiaryColor" to "#40375c",
+                "fontSize" to "12px",
+            ),
+            focusColor = "#FA8140"
+        ),
+    )
 }
