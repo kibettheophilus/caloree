@@ -31,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -51,6 +52,7 @@ fun CaloreesScreen(
 ) {
     var searchString by remember { mutableStateOf("") }
     val caloryUiState by viewModel.caloriesState.collectAsState()
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Scaffold(
         topBar = {
@@ -73,6 +75,7 @@ fun CaloreesScreen(
                         IconButton(onClick = {
                             viewModel.getCalories(searchString)
                             searchString = ""
+                            keyboardController?.hide()
                         }) {
                             Icon(imageVector = Icons.Default.Search, contentDescription = "")
                         }
@@ -92,6 +95,7 @@ fun CaloreesScreen(
                         KeyboardActions(onSearch = {
                             viewModel.getCalories(searchString)
                             searchString = ""
+                            keyboardController?.hide()
                         }),
                 )
             }
@@ -145,7 +149,7 @@ fun CaloreeCard(
         onClick = {
             onNavigateToDetails(caloryItem.name)
         },
-        border = BorderStroke(1.dp, Color.Cyan),
+        border = BorderStroke(1.dp, Color.Black),
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
