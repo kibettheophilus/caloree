@@ -22,6 +22,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.theophiluskibet.caloree.designsystem.components.EmptyScreenComponent
 import com.theophiluskibet.caloree.designsystem.components.LoadingComponent
@@ -77,7 +78,7 @@ fun DetailScreenContent(
             }
 
             is DetailsUiState.Success -> {
-                Column {
+                Column(modifier=Modifier.testTag("caloree_details")) {
                     Row {
                         DetailItem(
                             modifier = Modifier.weight(1f),
