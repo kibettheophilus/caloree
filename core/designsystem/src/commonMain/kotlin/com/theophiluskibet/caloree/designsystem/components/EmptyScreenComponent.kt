@@ -11,8 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
 import caloree.core.designsystem.generated.resources.Res
 import caloree.core.designsystem.generated.resources.empty_data
 import org.jetbrains.compose.resources.painterResource
@@ -21,17 +21,17 @@ import org.jetbrains.compose.resources.painterResource
 fun EmptyScreenComponent(text: String) {
     Box(
         modifier = Modifier.fillMaxSize().testTag("empty_component"),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Image(
                 modifier = Modifier.size(250.dp).padding(bottom = 10.dp),
                 painter = painterResource(Res.drawable.empty_data),
-                contentDescription = ""
+                contentDescription = "",
             )
             Text(text = text)
         }
