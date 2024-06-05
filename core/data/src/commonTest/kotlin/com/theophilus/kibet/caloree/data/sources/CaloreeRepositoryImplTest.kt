@@ -20,7 +20,7 @@ class CaloreeRepositoryImplTest {
     }
 
     @Test
-    fun `given a sting of food - when repository.searchcalories is success - returns a list of meals`() =
+    fun `given a sting of food - when searchcalories is success - returns a list of meals`() =
         runTest {
             val response = repository.searchCalories("meat")
             assertNotNull(response)
