@@ -47,6 +47,11 @@ graph LR
   :feature:details --> :core:data
   :feature:details --> :core:designsystem
 ```
+### Screenshots
+|                                    Empty                                    |                                    List                                    |                                    Details                                    |
+|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|
+| <img src="screenshots/empty.png" width="200"> | <img src="screenshots/list.png" width="200"> | <img src="screenshots/details.png" width="200"> |
+
 #### Libraries and tech stack
 - [Kotlin](https://kotlinlang.org/) - programming language
 - [Kotlin Multiplatform](https://www.jetbrains.com/kotlin-multiplatform/) - Multiplaform framework
@@ -54,7 +59,7 @@ graph LR
 - [Koin](https://github.com/google/hilt](https://insert-koin.io/)) - a pragmatic lightweight dependency injection framework for Kotlin & Kotlin Multiplatform.
 - [Ktor Client](https://ktor.io/) - networking client framework
 - [KotlinX Serialization](https://github.com/Kotlin/kotlinx.serialization) - Serialization/Desirialization of JSON response from network.
-- [KtLint](https://github.com/pinterest/ktlint) - Kotlin linter.
+- [KtLint](https://github.com/pinterest/ktlint) - An anti-bikeshedding Kotlin linter with built-in formatter
 - [Room](https://developer.android.com/kotlin/multiplatform/room) - persistence library providing an abstraction layer over SQLite
   
 #### CI/CD
@@ -62,7 +67,9 @@ graph LR
 
 ## Known Issues
 - [BuildKonfig](https://github.com/kibettheophilus/caloree/issues/29) - buildKonfig config is generated on CI, it fails lint checks since it doens't conform to kotlin rules. Excluded `**/build/**` in ktlint but still facing the issue
-- [Room](https://github.com/kibettheophilus/caloree/issues/23) - with the current setup, room doesn't save data. Another option will be to switch to [SqlDelight](https://github.com/cashapp/sqldelight) 
+- [Room](https://github.com/kibettheophilus/caloree/issues/23) - with the current setup, room doesn't save data. Another option will be to switch to [SqlDelight](https://github.com/cashapp/sqldelight)
+- UI tests - I was not able to run tests for compose, the current impl is done following the androidTests structure. I however came across [writing and running compose multiplaform tests](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html#writing-and-running-tests-with-compose-multiplatform) and currently looking into it.
 
 ## Improvements
-- UI/UX - improve the design of the app
+- UI/UX - improve the design of the app.
+- Finish iOs implementation -  I mostly focused on android app and didn't test the iOs app.
