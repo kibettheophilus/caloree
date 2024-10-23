@@ -3,6 +3,7 @@ package com.theophiluskibet.calorees.details.utils
 import com.theophilus.kibet.caloree.data.model.Caloree
 import com.theophilus.kibet.caloree.data.sources.CaloreeRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class FakeCaloreeRepository : CaloreeRepository {
     var shouldThrowError = false
@@ -19,7 +20,7 @@ class FakeCaloreeRepository : CaloreeRepository {
     }
 
     override suspend fun getSavedCalories(): Flow<List<Caloree>> {
-        TODO("Not yet implemented")
+        return flowOf(searchData)
     }
 
     override suspend fun getCalorieDetails(food: String): Flow<Caloree> {

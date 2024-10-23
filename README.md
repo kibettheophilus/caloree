@@ -68,8 +68,6 @@ graph LR
 - [Github Actions](https://github.com/kibettheophilus/caloree/tree/master/.github/workflows) - to run tests, run lint checks and assemble apk. The deployment workflows are WIP.
 
 ## Known Issues
-- [BuildKonfig](https://github.com/kibettheophilus/caloree/issues/29) - buildKonfig config is generated on CI, it fails lint checks since it doens't conform to kotlin rules. Excluded `**/build/**` in ktlint but still facing the issue
-- [Room](https://github.com/kibettheophilus/caloree/issues/23) - with the current setup, room doesn't save data. Another option will be to switch to [SqlDelight](https://github.com/cashapp/sqldelight)
 - UI tests - I was not able to run tests for compose, the current impl is done following the androidTests structure. I however came across [writing and running compose multiplaform tests](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html#writing-and-running-tests-with-compose-multiplatform) and currently looking into it.
 
 ## Improvements

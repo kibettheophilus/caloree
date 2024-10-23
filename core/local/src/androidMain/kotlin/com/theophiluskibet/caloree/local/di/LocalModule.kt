@@ -2,7 +2,7 @@ package com.theophiluskibet.caloree.local.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import androidx.sqlite.driver.AndroidSQLiteDriver
 import com.theophiluskibet.caloree.local.database.CaloreeDatabase
 import com.theophiluskibet.caloree.local.database.DB_FILE_NAME
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import org.koin.dsl.module
 actual fun localModule() =
     module {
         single<CaloreeDatabase> { createDatabase(context = get()) }
-        // single { get<CaloreeDatabase>().caloreeDao() }
+        single { get<CaloreeDatabase>().caloreeDao() }
     }
 
 /**
@@ -27,7 +27,7 @@ fun createDatabase(context: Context): CaloreeDatabase {
         context = context,
         name = dbFile.absolutePath,
     )
-        .setDriver(BundledSQLiteDriver())
+        .setDriver(AndroidSQLiteDriver())
         .setQueryCoroutineContext(Dispatchers.IO)
         .build()
 }

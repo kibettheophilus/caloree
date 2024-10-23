@@ -15,6 +15,10 @@ class CaloreesViewModel(
     private val _caloriesState = MutableStateFlow<CaloreesUiState>(CaloreesUiState.Default)
     val caloriesState: StateFlow<CaloreesUiState> = _caloriesState
 
+    init {
+        getSaved()
+    }
+
     fun getCalories(food: String) {
         viewModelScope.launch {
             _caloriesState.update {
@@ -25,12 +29,29 @@ class CaloreesViewModel(
                 _caloriesState.update {
                     CaloreesUiState.Success(data = result)
                 }
-                // Log.d("CALORIES", "CALORIESVM: $result")
             } catch (exception: Exception) {
                 _caloriesState.update {
                     CaloreesUiState.Error(errorMessage = exception.message.toString())
                 }
-                // Log.d("CALORIES", "CALORIESVMErr: ${e.localizedMessage}")
+            }
+        }
+    }
+
+    private fun getSaved() {
+        viewModelScope.launch {
+            _caloriesState.update {
+                CaloreesUiState.Loading
+            }
+            try {
+                repository.getSavedCalories().collect { result ->
+                    _caloriesState.update {
+                        CaloreesUiState.Success(data = result)
+                    }
+                }
+            } catch (exception: Exception) {
+                _caloriesState.update {
+                    CaloreesUiState.Error(errorMessage = exception.message.toString())
+                }
             }
         }
     }
