@@ -1,6 +1,5 @@
 package com.theophiluskibet.caloree.network.client
 
-import com.theophiluskibet.caloree.network.BuildKonfig
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.DefaultRequest
@@ -51,6 +50,6 @@ fun createHttpClient(engine: HttpClientEngine) =
                 protocol = URLProtocol.HTTPS
             }
             header(HttpHeaders.ContentType, ContentType.Application.Json)
-            header("X-Api-Key", BuildKonfig.API_KEY)
+            header("X-Api-Key", "")
         }
     }

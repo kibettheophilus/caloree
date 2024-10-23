@@ -1,10 +1,6 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
-
 plugins {
     alias(libs.plugins.caloreeMultiplaform)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
@@ -34,14 +30,4 @@ kotlin {
 
 android {
     namespace = "com.theophiluskibet.caloree.network"
-}
-
-buildkonfig {
-    packageName = "com.theophiluskibet.caloree.network"
-
-    defaultConfigs {
-        val apiKey: String = gradleLocalProperties(rootDir).getProperty("API_KEY") ?: ""
-
-        buildConfigField(STRING, "API_KEY", apiKey)
-    }
 }

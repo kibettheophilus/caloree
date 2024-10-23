@@ -20,8 +20,14 @@ subprojects {
             reporter(ReporterType.JSON)
         }
         filter {
-            exclude("**/generated/**")
-            exclude("**/build/**")
+//            exclude("**/generated/**")
+//            exclude("**/build/**")
+            exclude {
+                projectDir.toURI().relativize(it.file.toURI()).path.contains("/generated/")
+            }
+            exclude {
+                projectDir.toURI().relativize(it.file.toURI()).path.contains("/build/")
+            }
         }
     }
 }
