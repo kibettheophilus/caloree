@@ -3,7 +3,6 @@ package com.theophiluskibet.caloree.local.di
 import android.content.Context
 import androidx.room.Room
 import androidx.sqlite.driver.AndroidSQLiteDriver
-import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.theophiluskibet.caloree.local.database.CaloreeDatabase
 import com.theophiluskibet.caloree.local.database.DB_FILE_NAME
 import kotlinx.coroutines.Dispatchers
