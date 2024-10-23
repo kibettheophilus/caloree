@@ -1,18 +1,12 @@
 import com.theophiluskibet.calorees.calorees.screens.CaloreesViewModel
-import com.theophiluskibet.calorees.calorees.utils.CaloreesUiState
 import com.theophiluskibet.calorees.details.utils.FakeCaloreeRepository
-import com.theophiluskibet.calorees.details.utils.searchData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class CaloreesViewModelTest {
